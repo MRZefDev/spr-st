@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Seni Çok Seviyorum Zehra'm</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-weight: bold;
+    }
+
+    #loadingScreen {
+      position: fixed;
+      top:0; left:0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: bgChange 4s linear forwards;
+    }
+
+    @keyframes bgChange {
+      0% {background: #ffe6f7;}
+      25% {background: #ffcce6;}
+      50% {background: #ffb3d9;}
+      75% {background: #ff99cc;}
+      100% {background: #ffe6f7;}
+    }
+
+    #loadingText {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #e63946;
+      white-space: nowrap;
+      animation: moveTitle 4s linear forwards;
+    }
+
+    @keyframes moveTitle {
+      0% { transform: translateY(0) rotate(0deg);}
+      25% { transform: translateY(-10px) rotate(-2deg);}
+      50% { transform: translateY(10px) rotate(2deg);}
+      75% { transform: translateY(-5px) rotate(-1deg);}
+      100% { transform: translateY(0) rotate(0deg);}
+    }
+
+    .dot {
+      display: inline-block;
+      animation: dotBlink 1s infinite;
+    }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotBlink {
+      0%, 20% { opacity: 0; }
+      50%, 100% { opacity: 1; }
+    }
+
+    #flowers, #hearts, #dogs {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+    #bigHeartContainer {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      width: 50vw;
+      height: 45vw;
+      max-width: 550px;
+      max-height: 500px;
+      min-width: 320px;
+      min-height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    #bigHeartSVG {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 8px 24px #c9184a77);
+      transition: transform 1s cubic-bezier(.46,1.48,.52,.95);
+      will-change: transform;
+    }
+    #loveTextBox {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      z-index: 10;
+      padding: 42px 24px 38px 24px;
+      border-radius: 28px;
+      box-shadow: 0 8px 40px #e6394627, 0 0 0 8px #fff8;
+      min-width: 260px;
+      min-height: 120px;
+      border: 4px solid #f8bbd0;
+      background: #fff7f9;
+      overflow: hidden;
+    }
+
+    #loveText {
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #e63946;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 18px #fff, 0 1px 2px #d7266022, 0 0 10px #e6394630;
+      margin-top: 18px;
+      z-index: 2;
+      animation: textMove 2s ease-in-out infinite alternate;
+    }
+    @keyframes textMove {
+      0% { transform: translateY(0);}
+      50% { transform: translateY(-8px);}
+      100% { transform: translateY(0);}
+    }
+
+    .bgImage {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: 1;
+      will-change: transform;
+    }
+    #mainDog {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      width: 120px;
+      height: 120px;
+      z-index: 1;
+      opacity: 0.95;
+      pointer-events: none;
+    }
+    @media (max-width: 700px) {
+      #bigHeartContainer { width: 90vw; height: 80vw; max-width: none; max-height: none; }
+      #loveTextBox { padding: 18px 8px 18px 8px; min-width: 140px; min-height: 70px; }
+      #loveText { font-size: 1.8rem; }
+      #mainDog { width: 80px; height: 80px; }
+      #loadingText { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loadingScreen">
+    <div id="loadingText">Hazırlanıyor<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>
+  </div>
+
+  <div id="flowers"></div>
+  <div id="hearts"></div>
+  <div id="dogs"></div>
+
+  <div id="bigHeartContainer" title="Kalbe tıkla!">
+    <svg id="bigHeartSVG" viewBox="0 0 512 480">
+      <path d="M256,440
+        C50,280 0,140 130,85
+        C190,60 256,110 256,150
+        C256,110 322,60 382,85
+        C512,140 462,280 256,440
+        Z"
+        fill="#e63946" stroke="#c9184a" stroke-width="8" />
+    </svg>
+  </div>
+
+  <div id="loveTextBox">
+    <img id="mainDog" src="https://static-wikia-nocookie-net.translate.goog/warner-bros-entertainment/images/4/46/New_Courage.png/revision/latest?cb=20250329014421&_x_tr_sl=en&_x_tr_tl=tr&_x_tr_hl=tr&_x_tr_pto=imgs" alt="Courage the Cowardly Dog">
+    <div id="loveText">Seni çok seviyorum kahveliimmm</div>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.getElementById('loadingScreen').style.display = 'none';
+      }, 3000); 
+    });
+
+    const flowerTypes = ["🌸", "🌹", "🌻", "🌷", "💐"];
+    function createFlower() {
+      const flower = document.createElement('span');
+      flower.textContent = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
+      flower.style.position = 'absolute';
+      flower.style.left = Math.random() * 98 + 'vw';
+      flower.style.top = '-40px';
+      flower.style.fontSize = (28 + Math.random() * 36) + 'px';
+      flower.style.transition = `top ${2.5 + Math.random() * 2.5}s linear`;
+      flower.style.opacity = 0.7 + Math.random() * 0.3;
+      document.getElementById('flowers').appendChild(flower);
+      setTimeout(() => { flower.style.top = '100vh'; }, 10);
+      setTimeout(() => flower.remove(), 5200);
+    }
+    setInterval(createFlower, 160);
+
+    function createMiniHeart() {
+      const heart = document.createElement('span');
+      heart.textContent = '❤️';
+      heart.style.position = 'absolute';
+      heart.style.left = (5 + Math.random() * 90) + 'vw';
+      heart.style.top = '-40px';
+      heart.style.fontSize = (18 + Math.random() * 18) + 'px';
+      heart.style.transition = `top ${2.2 + Math.random() * 2.2}s linear`;
+      heart.style.opacity = 0.7 + Math.random() * 0.3;
+      document.getElementById('hearts').appendChild(heart);
+      setTimeout(() => { heart.style.top = (100 + Math.random() * 20) + 'vh'; }, 10);
+      setTimeout(() => heart.remove(), 4400);
+    }
+    let heartInterval = setInterval(createMiniHeart, 120);
+    setTimeout(() => { clearInterval(heartInterval); }, 4000);
+
+    function createMiniDog() {
+      const dog = document.createElement('img');
+      dog.src = "https://static-wikia-nocookie-net.translate.goog/warner-bros-entertainment/images/4/46/New_Courage.png/revision/latest?cb=20250329014421&_x_tr_sl=en&_x_tr_tl=tr&_x_tr_hl=tr&_x_tr_pto=imgs";
+      dog.classList.add('bgImage');
+      dog.style.left = Math.random() * 95 + 'vw';
+      dog.style.top = '-50px';
+      const size = 40 + Math.random() * 50; 
+      dog.style.width = size + 'px';
+      dog.style.height = size + 'px';
+      document.getElementById('dogs').appendChild(dog);
+
+      const duration = 6 + Math.random() * 4;
+      dog.style.transition = `top ${duration}s linear`;
+      setTimeout(() => { dog.style.top = '110vh'; }, 50);
+      setTimeout(() => dog.remove(), duration * 1000 + 50);
+    }
+    setInterval(createMiniDog, 500);
+
+    const bigHeartContainer = document.getElementById('bigHeartContainer');
+    bigHeartContainer.addEventListener('click', function () {
+      const loveBox = document.getElementById('loveTextBox');
+      loveBox.style.display = 'block';
+      document.getElementById('bigHeartSVG').style.transform = 'scale(1.07)';
+      setTimeout(() => { document.getElementById('bigHeartSVG').style.transform = 'scale(1)'; }, 900);
+    });
+  </script>
+</body>
+</html>
